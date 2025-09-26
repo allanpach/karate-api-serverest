@@ -1,0 +1,7 @@
+{
+  "nome": "#notnull",
+  "email": "#notnull",
+  "password": "#notnull",
+  "administrador": "#notnull",
+  "_id": "#notnull"
+}

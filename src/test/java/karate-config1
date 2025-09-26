@@ -1,0 +1,20 @@
+function fn() {
+  var env = karate.env; // get system property 'karate.env'
+  karate.log('karate.env system property was:', env);
+  if (!env) {
+    env = 'dev'; // Aqui é ande setamos em qual ambiente executar os testes, no caso DEV ou QA
+  }
+  var config = {
+    env: env,
+    myVarName: 'someValue'
+  }
+  if (env == 'dev') {
+    // customize
+    // e.g. config.foo = 'bar';
+    config.url = 'https://serverest.dev'
+  } else if (env == 'qa') {
+    // customize
+     config.url = 'https://serverest.qa'
+  }
+  return config;
+}

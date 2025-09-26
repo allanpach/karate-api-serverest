@@ -1,0 +1,3 @@
+headers_presentation: {"accept": "application/json", "Content-type": "application/json"}
+headers_post: {"accept": "application/json", "Content-type": "application/json"}
+headers_auth: {accept: 'application/json', Authorization: 'Basic VkFMRTpUZXN0MUA1NDQyNw=='}

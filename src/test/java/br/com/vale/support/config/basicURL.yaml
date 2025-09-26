@@ -1,0 +1,11 @@
+dev:
+  env: 'dev'
+  url: 'https://serverest.dev'
+
+uat:
+  env: 'uat'
+  name_url: ''
+
+qa:
+  env: 'qa'
+  url: 'https://serverest.qa'
