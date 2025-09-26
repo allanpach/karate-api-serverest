@@ -191,22 +191,22 @@ mvn test
 #### Run Specific Test Runners
 ```bash
 # Run smoke tests only (critical scenarios)
-mvn test -Dtest=SmokeTestRunner
+mvn test -Dtest=LoginTestRunner
 
 # Run regression tests only (full coverage)
-mvn test -Dtest=RegressionTestRunner
+mvn test -Dtest=UsersTestRunner
 
 # Run all API tests (comprehensive)
-mvn test -Dtest=ApiTestRunner
+mvn test -Dtest=TestRunner
 ```
 
 #### Run by Tags (Karate Options)
 ```bash
 # Run smoke tests
-mvn test -Dkarate.options="--tags @smoke"
+mvn test -Dkarate.options="--tags @user"
 
 # Run regression tests
-mvn test -Dkarate.options="--tags @regression"
+mvn test -Dkarate.options="--tags @login"
 
 # Run negative tests only
 mvn test -Dkarate.options="--tags @negative"
