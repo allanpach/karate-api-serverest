@@ -163,16 +163,18 @@ karateFramework-API-automation/
 
 1. **Clone the repository**
    ```bash
-   git clone ...
-   cd karateFramework-API-automation
+   git clone https://github.com/allanpach/karate-api-serverest.git
    ```
-
-2. **Install dependencies**
+2. **Access the project**
+   ```bash
+    cd karate-api-serverest
+   ```
+3. **Install dependencies**
    ```bash
    mvn clean compile test-compile
    ```
 
-3. **Verify setup**
+4. **Verify setup**
    ```bash
    mvn test
    ```
