@@ -1,4 +1,4 @@
-@users
+@users @regression
 Feature: Listar usuarios cadastrados por ID
 
   Background:

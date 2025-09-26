@@ -1,4 +1,4 @@
-@login
+@login @regression
 Feature: Autentique o seu usuário para montar um carrinho e, se for administrador, gerenciar os produtos
 
   Background:

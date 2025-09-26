@@ -28,18 +28,21 @@ karateFramework-API-automation/
 │       └── java/
 │           ├── br.com.vale/
 │           │   ├── feature/
-│           │   │   └── account                  
-│           │   │       └── users.feature         # Users API test scenarios
-│           │   │   └── bookStore                 
-│           │   │       └── book.feature          # Book API test scenarios
+│           │   │   └── login                  
+│           │   │       └── postLogin.feature     # Login API test scenarios
+│           │   │   └── users                 
+│           │   │       └── deleteUsersId.feature # Delete users ID API test scenarios
+│           │   │       └── getUsers.feature      # Get all users API test scenarios
+│           │   │       └── getUsersId.feature    # Get ID users API test scenarios
+│           │   │       └── postUsers.feature     # Post users API test scenarios
+│           │   │       └── putUsersId.feature    # Put ID users API test scenarios
 │           │   ├── support/                      # Utility and functions
 │           │   │   └── config    
 │           │   │   └── utils         
 │           │   ├── runners/
 │           │   │   ├── AllTestRunner.java         # All API tests runner
-│           │   │   ├── UserTestRunner.java        # Users tests runner
-│           │   │   ├── BookTestRunner.java        # Book Stores tests runner
-│           │   │   └── common-utils.js            
+│           │   │   ├── LoginTestRunner.java       # Login tests runner
+│           │   │   ├── UsersTestRunner.java       # Users Stores tests runner
 │           └── karate-config.js                    # Global configuration
 ├── target/
 │   └── karate-reports/                             # Generated test reports
@@ -47,139 +50,99 @@ karateFramework-API-automation/
 └── README.md                                       # Test data documentation
 ```
 
-## 🌐 APIs Under Test: Book Store API
+## 🌐 APIs Under Test: ServeRest  2.29.7
 
-### 1. Account
-- **Endpoint**: `https://demoqa.com/Account/v1/User`
+### 1. Login
+- **Endpoint**: `https://serverest.dev/login`
+- **Method**: `POST`
+- **Expected Status Code**: `200` with JSON
+- **Test Coverage**: Success scenarios
+
+#### Sample Response: Login realizado com sucesso
+
+```json
+{
+  "message": "Login realizado com sucesso",
+  "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNTg5NzU4NzQ2LCJleHAiOjE1ODk3Njg3NDZ9.B6TASHV8k9xBerz4NSeFBlAZGSDhZlqESt767M0567I"
+}
+```
+
+### 2. Usuários
+- **Endpoint**: `https://serverest.dev/usuarios`
+- **Method**: `GET`
+- **Expected Status Code**: `200` with JSON
+- **Test Coverage**: Success scenarios
+
+#### Sample Response: Lista de usuários
+```json
+{
+  "quantidade": 1,
+  "usuarios": [
+    {
+      "nome": "Fulano da Silva",
+      "email": "beltrano@qa.com.br",
+      "password": "teste",
+      "administrador": "true",
+      "_id": "0uxuPY0cbmQhpEz1"
+    }
+  ]
+}
+```
+- **Endpoint**: `https://serverest.dev/usuarios`
 - **Method**: `POST`
 - **Expected Status Code**: `201` with JSON
 - **Test Coverage**: Success scenarios
 
-#### Sample Response:
+#### Sample Response: Cadastro com sucesso
+
 ```json
 {
-  "userID": "375c6bda-42ba-4af9-88e0-d4c45228d2d9",
-  "username": "TesteWOvSyRKkxg",
-  "books": [
-  ]
+  "message": "Cadastro realizado com sucesso",
+  "_id": "jogfODIlXsqxNFS2"
 }
 ```
 
-- **Endpoint**: `https://demoqa.com/Account/v1/GenerateToken`
-- **Method**: `POST`
-- **Expected Status Code**: `200` with JSON
-- **Test Coverage**: Success scenarios
-
-#### Sample Response:
-```json
-{
-  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlRlc3RlTmhyZGlnYndpZyIsInBhc3N3b3JkIjoiVGVzdDFANTQ0MjciLCJpYXQiOjE3NTcyNzUwMTR9.WM64w6fVUKCfSlAuPq5m7wXSZcN7Vn0OMPRwsKAf770",
-  "expires":"2025-09-14T19:56:54.928Z",
-  "status":"Success",
-  "result":"User authorized successfully."
-}
-```
-- **Endpoint**: `https://demoqa.com/Account/v1/Authorized`
-- **Method**: `POST`
-- **Expected Status Code**: `201` with boolean
-- **Test Coverage**: Success scenarios
-
-#### Sample Response:
-```json
-  true
-```
-- **Endpoint**: `https://demoqa.com/Account/v1/User/945f0552-32c3-4d70-a745-56cd319555af`
+- **Endpoint**: `https://serverest.dev/usuarios/0uxuPY0cbmQhpEz1`
 - **Method**: `GET`
 - **Expected Status Code**: `200` with JSON
 - **Test Coverage**: Success scenarios
 
-#### Sample Response:
+#### Sample Response: Usuário encontrado
+
 ```json
 {
-  "userId": "945f0552-32c3-4d70-a745-56cd319555af",
-  "username": "VALE",
-  "books": [
-    {
-      "isbn": "9781449325862",
-      "title": "Git Pocket Guide",
-      "subTitle": "A Working Introduction",
-      "author": "Richard E. Silverman",
-      "publish_date": "2020-06-04T08:48:39.000Z",
-      "publisher": "O'Reilly Media",
-      "pages": 234,
-      "description": "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp",
-      "website": "http://chimera.labs.oreilly.com/books/1230000000561/index.html"
-    },
-    {
-      "isbn": "9781449365035",
-      "title": "Speaking JavaScript",
-      "subTitle": "An In-Depth Guide for Programmers",
-      "author": "Axel Rauschmayer",
-      "publish_date": "2014-02-01T00:00:00.000Z",
-      "publisher": "O'Reilly Media",
-      "pages": 460,
-      "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who o",
-      "website": "http://speakingjs.com/"
-    }
-  ]
+  "nome": "Fulano da Silva",
+  "email": "beltrano@qa.com.br",
+  "password": "teste",
+  "administrador": "true",
+  "_id": "0uxuPY0cbmQhpEz1"
 }
-
 ```
 
-### 2. Book Store
-- **Endpoint**: `https://demoqa.com/BookStore/v1/Books`
-- **Method**: `GET`
+- **Endpoint**: `https://serverest.dev/usuarios/1PYryuVUK34rdZgp`
+- **Method**: `DELETE`
 - **Expected Status Code**: `200` with JSON
 - **Test Coverage**: Success scenarios
 
-#### Sample Response:
+#### Sample Response: Registro excluído com sucesso | Nenhum registro excluído
+
 ```json
 {
-  "books": [
-    {
-      "isbn": "9781449325862",
-      "title": "Git Pocket Guide",
-      "subTitle": "A Working Introduction",
-      "author": "Richard E. Silverman",
-      "publish_date": "2020-06-04T08:48:39.000Z",
-      "publisher": "O'Reilly Media",
-      "pages": 234,
-      "description": "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp",
-      "website": "http://chimera.labs.oreilly.com/books/1230000000561/index.html"
-    },
-    {
-      "isbn": "9781449331818",
-      "title": "Learning JavaScript Design Patterns",
-      "subTitle": "A JavaScript and jQuery Developer's Guide",
-      "author": "Addy Osmani",
-      "publish_date": "2020-06-04T09:11:40.000Z",
-      "publisher": "O'Reilly Media",
-      "pages": 254,
-      "description": "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-da",
-      "website": "http://www.addyosmani.com/resources/essentialjsdesignpatterns/book/"
-    }
-  ]
+  "message": "Registro excluído com sucesso | Nenhum registro excluído"
 }
 ```
-- **Endpoint**: `https://demoqa.com/BookStore/v1/Books`
-- **Method**: `GET`
-- **Expected Status Code**: `201` with JSON
+- **Endpoint**: `ttps://serverest.dev/usuarios/0uxuPY0cbmQhpEz1`
+- **Method**: `PUT`
+- **Expected Status Code**: `200` with JSON
 - **Test Coverage**: Success scenarios
 
-#### Sample Response:
+#### Sample Response: Alterado com sucesso
+
 ```json
 {
-  "books": [
-    {
-      "isbn": "9781449325862"
-    },
-    {
-      "isbn": "9781449365035"
-    }
-  ]
+  "message": "Registro alterado com sucesso"
 }
 ```
-
 ## 🏷️ Test Categories & Tags
 
 | Tag | Purpose | Description |
@@ -282,9 +245,13 @@ scenarios:    6 | passed:     6 | failed: 0
 After execution, detailed reports are generated in:
 ```
 target/karate-reports/
-├── karate-summary.html                     # Main report dashboard
-├── br.com.vale.features.account.users.html # Users API detailed report
-├── br.com.vale.features.bookStore.book.html# Book API detailed report
+├── karate-summary.html                           # Main report dashboard
+├── br.com.vale.features.login.PostLogin.html     # Login API detailed report
+├── br.com.vale.features.users.getUsers.html      # Users API detailed report
+├── br.com.vale.features.users.postUsers.html     # Users API detailed report
+├── br.com.vale.features.users.getUsersId.html    # Users API detailed report
+├── br.com.vale.features.users.deleteUsersId.html # Users API detailed report
+├── br.com.vale.features.users.putUsersId.html    # Users API detailed report
 └── *.karate-json.txt            # Raw JSON results
 ```
 
@@ -307,7 +274,7 @@ function fn() {
     var config = { env: env }
     var headers = {"cache-control": "no-cache"}
     karate.configure('ssl', true)
-    if (!env) {env = 'qa'; }
+    if (!env) {env = 'dev'; }
     switch(env){
         case 'uat':
             config = karate.read('classpath:br/com/vale/support/config/basicURL.yaml')['uat']

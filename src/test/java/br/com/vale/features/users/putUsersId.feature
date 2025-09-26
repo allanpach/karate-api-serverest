@@ -1,4 +1,4 @@
-@users
+@users @regression
 Feature: Editar usuario
 
   Background:
